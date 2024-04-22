@@ -8,6 +8,7 @@ package com.bookstore.business.bll.catalogmngmt;
 import com.bookstore.business.persistence.catalog.Publisher;
 import jakarta.ejb.*;
 
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 
 /**
@@ -20,6 +21,7 @@ import jakarta.persistence.*;
 @LocalBean
 public class PublisherManagerServiceBean {
 
+    @PersistenceContext(unitName = "bsPU")
     private EntityManager em;
 
     /**
@@ -29,7 +31,9 @@ public class PublisherManagerServiceBean {
      * @return éditeur managé par le contexte de persistance
      */
     public Publisher savePublisher(Publisher publisher) {
-        return null;
+        em.persist(publisher);
+        return publisher;
+//        return null;
     }
 
     /**

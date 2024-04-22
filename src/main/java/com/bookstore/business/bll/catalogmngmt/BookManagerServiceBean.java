@@ -7,6 +7,7 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,6 +27,7 @@ import java.util.List;
 @LocalBean //facultatif
 public class BookManagerServiceBean implements Serializable {
 
+    @PersistenceContext(unitName = "bsPU")
     private EntityManager em;
 
    @PreDestroy

@@ -11,6 +11,7 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import java.util.List;
 @LocalBean
 public class CategoryManagerServiceBean {
 
+    @PersistenceContext(unitName = "bsPU")
     private EntityManager em;
     
     /**

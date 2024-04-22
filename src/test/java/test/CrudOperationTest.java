@@ -13,7 +13,10 @@ import org.junit.*;
 
 import jakarta.persistence.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+//import static org.junit.Assert.*;
 
 /**
  *
@@ -61,7 +64,7 @@ public class CrudOperationTest {
                              + "il y a un problème dans la modélisation JPA Publisher ou de la classe embarquée..."
                                 + "ou alors votre jeu de données ne correspond pas au jeu original";
         
-        assertEquals(errorMessage,new Long(3000),pub.getAddress().getZp());
+        assertEquals(errorMessage, Long.valueOf(3000),pub.getAddress().getZp());
         
         }catch(IllegalArgumentException e){
             throw new AssertionError(Publisher.class.getName()+" n'est pas correctement configuré");
