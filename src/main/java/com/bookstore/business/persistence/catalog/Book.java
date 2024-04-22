@@ -17,7 +17,7 @@ public class Book implements Serializable {
     @Column(name = "ID_LIVRE", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ID_EDITEUR")
     private Publisher publisher;
 
@@ -28,6 +28,7 @@ public class Book implements Serializable {
     private String summary;
 
     @Column(name = "DATE_PARUTION", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
 

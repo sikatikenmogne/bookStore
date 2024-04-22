@@ -33,12 +33,12 @@ public class Publisher implements Serializable {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "publisher", orphanRemoval = true)
-    private List<Book> books = new ArrayList<>();
-
     public List<Book> getBooks() {
         return books;
     }
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Book> books = new ArrayList<>();
 
     public void setBooks(List<Book> books) {
         this.books = books;
