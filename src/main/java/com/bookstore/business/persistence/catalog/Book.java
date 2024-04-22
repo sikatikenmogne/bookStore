@@ -100,7 +100,7 @@ public class Book implements Serializable {
         return "persistence.Book[id=" + id + "]";
     }
 
-    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 
 //    @JoinTable(name = "appartient", joinColumns = @JoinColumn(name = "ID_LIVRE"), inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIE"))
     private List<Category> categories = new ArrayList<>();

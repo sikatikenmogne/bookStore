@@ -16,9 +16,9 @@ public class Category implements Serializable {
     @Column(name = "ID_CATEGORIE", nullable = false)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "CAT_ID_CATEGORIE")
-    @Transient
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CAT_ID_CATEGORIE")
+//    @Transient
     private Category parentCategory;
 
     @Column(name = "TITRE", nullable = false)
