@@ -43,7 +43,7 @@ public class PublisherManagerServiceBean {
      * @return l'éditeur recherché
      */
     public Publisher findPublisherById(Long publisherId) {
-      return null;
+        return em.find(Publisher.class, publisherId);
     }
   
 }

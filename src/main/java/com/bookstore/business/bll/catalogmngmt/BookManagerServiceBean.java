@@ -51,7 +51,7 @@ public class BookManagerServiceBean implements Serializable {
  * @return le livre correspondant à l'id passée en argument
  */
     public Book findBookById(Long bookId) {
-       return null;
+        return em.find(Book.class, bookId);
     }
 
  /**
@@ -85,7 +85,14 @@ public class BookManagerServiceBean implements Serializable {
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Book updateBook(Book book) { 
-        return null;
+        Book bookToUpdate = em.find(Book.class, book.getId());
+        bookToUpdate.setTitle(book.getTitle());
+        bookToUpdate.setDate(book.getDate());
+        bookToUpdate.setPublisher(book.getPublisher());
+        bookToUpdate.setSummary(book.getSummary());
+        em.merge(bookToUpdate);
+        em.flush();
+        return bookToUpdate;
     }
 
 }
