@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -99,9 +100,10 @@ public class Book implements Serializable {
         return "persistence.Book[id=" + id + "]";
     }
 
-    @ManyToMany
-    @JoinTable(name = "appartient", joinColumns = @JoinColumn(name = "ID_LIVRE"), inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIE"))
-    private List<Category> categories;
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+
+//    @JoinTable(name = "appartient", joinColumns = @JoinColumn(name = "ID_LIVRE"), inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIE"))
+    private List<Category> categories = new ArrayList<>();
 
     public List<Category> getCategories() {
         return categories;

@@ -48,7 +48,7 @@ public class CategoryManagerServiceBean {
      */
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)//comportement transactionnel redéfini
     public Category findCategoryById(Long categoryId){
-        return null;
+        return em.find(Category.class, categoryId);
     }
 
     /**

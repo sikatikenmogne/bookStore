@@ -42,7 +42,9 @@ public class BookManagerServiceBean implements Serializable {
     * @return le livre persisté
     */
     public Book saveBook(Book book){
-       return null;
+        em.persist(book);
+        em.flush();
+       return book;
     }
 
 /**

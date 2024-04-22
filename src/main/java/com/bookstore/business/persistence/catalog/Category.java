@@ -16,8 +16,9 @@ public class Category implements Serializable {
     @Column(name = "ID_CATEGORIE", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CAT_ID_CATEGORIE")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "CAT_ID_CATEGORIE")
+    @Transient
     private Category parentCategory;
 
     @Column(name = "TITRE", nullable = false)
@@ -26,7 +27,10 @@ public class Category implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany
+    @JoinTable(name = "appartient",
+            joinColumns = @JoinColumn(name = "ID_CATEGORIE"),
+            inverseJoinColumns = @JoinColumn(name = "ID_LIVRE"))
     private List<Book> books = new ArrayList<>();
 
     public List<Book> getBooks() {

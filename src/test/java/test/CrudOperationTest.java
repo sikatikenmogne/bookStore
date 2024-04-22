@@ -36,8 +36,10 @@ public class CrudOperationTest {
     }
     
     @AfterClass
-    public static void tearDownClass() {    
-        emf.close();
+    public static void tearDownClass() {
+        if(emf != null){
+            emf.close();
+        }
     }
     
     @Before
