@@ -63,7 +63,16 @@ public class CategoryManagerServiceBean {
      * @return la liste de catégories n'ayant pas de parents.
      */
     public List<Category> getRootCategories() {
-        return null;
+        String jpql = "SELECT c from Category c where c.parentCategory is null";
+
+        List result;
+        try {
+            Query query = em.createQuery(jpql);
+            result = query.getResultList();
+            return result;
+        } catch (IllegalArgumentException e) {
+            throw new AssertionError("requête [" + jpql + "] est mal formée");
+        }
     }
 
    /**
@@ -74,7 +83,16 @@ public class CategoryManagerServiceBean {
     * retourne null si aucune catégorie enfant n'est  retrouvée en fonction de parentId
     */
     public List<Category> getchildrenCategories(Long parentId) {
-       return null;
+
+        String jpql = "SELECT c from Category c where c.parentCategory = :category";
+        try {
+            Category cat = em.find(Category.class, parentId);
+            Query query = em.createQuery(jpql);
+            query.setParameter("category", cat);
+            return query.getResultList();
+        } catch (IllegalArgumentException e) {
+            throw new AssertionError("requête [" + jpql + "] est mal formée");
+        }
     }
 
 }

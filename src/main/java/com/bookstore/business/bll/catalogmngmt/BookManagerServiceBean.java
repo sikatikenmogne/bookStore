@@ -75,8 +75,10 @@ public class BookManagerServiceBean implements Serializable {
      */ 
     @TransactionAttribute(TransactionAttributeType.SUPPORTS) //méthode pouvant joindre le contexte transactionnel de l'appelant
     public List<Book> findByCriteria(String pattern) {
-        return null;
-     
+        String jpql = "SELECT c from Book c where c.title like :pattern";
+        Query query = em.createQuery(jpql);
+        query.setParameter("pattern", "%"+ pattern + "%");
+        return query.getResultList();
     }
 
     /**

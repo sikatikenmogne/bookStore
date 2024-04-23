@@ -48,7 +48,7 @@ public class JPQLTest {
 
     @Test
     public void checkSimpleRequest(){
-        String jpql = "VOTRE REQUETE";
+        String jpql = "SELECT c from Category c where c.parentCategory is null";
         try{
         Query query = em.createQuery(jpql);
         List result = query.getResultList();
@@ -61,9 +61,9 @@ public class JPQLTest {
     
     @Test
     public void checkRequestWithStringParameter(){
-        String jpql = "VOTRE REQUETE PARAMETREE"; //remplacez par votre requête 
-        String param="VALEUR DU PARAMETRE"; //remplacez par la valeur de type %votreChaine% (votre motif de recherche encadré par %)
-        String paramName = "VOTRE PARAMETRE";//remplacez par le nom du paramètre tel qu'il est défini dans votre requête JPQL
+        String jpql = "SELECT c from Category c where c.title like :pattern"; //remplacez par votre requête
+        String param="%C#%"; //remplacez par la valeur de type %votreChaine% (votre motif de recherche encadré par %)
+        String paramName = "pattern";//remplacez par le nom du paramètre tel qu'il est défini dans votre requête JPQL
         
         try{
         Query query = em.createQuery(jpql);
@@ -78,12 +78,12 @@ public class JPQLTest {
     @Test
     public void checkRequestWithCategoryParameter(){
         
-        String jpql = "VOTRE REQUETE PARAMETREE";//remplacez par votre requête
+        String jpql = "SELECT c from Category c where c.parentCategory = :category";//remplacez par votre requête
         try{       
-            Long catId = 56L; //"ID DE LA CATEGORIE" - remplacez par un id valide
+            Long catId = 149L; //"ID DE LA CATEGORIE" - remplacez par un id valide
             Category cat = em.find(Category.class,catId);
         
-            String paramName = "NOM DU PARAMETRE"; //remplacez par le nom du paramètre tel qu'il est défini dans votre requête JPQL
+            String paramName = "category"; //remplacez par le nom du paramètre tel qu'il est défini dans votre requête JPQL
 
             Query query = em.createQuery(jpql);
             query.setParameter(paramName, cat);
